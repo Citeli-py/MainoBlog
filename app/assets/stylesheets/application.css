@@ -15,33 +15,31 @@
  */
 
  /* Estilos para a paginação do will_paginate */
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination .page-item {
-  margin: 0 5px;
-}
-
-.pagination .page-item a {
-  color: #007bff;
-  text-decoration: none;
-  padding: 5px 10px;
-  border: 1px solid #007bff;
-  border-radius: 3px;
-}
-
-.pagination .page-item.disabled a,
-.pagination .page-item.active a {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-.pagination .page-item.disabled a:hover,
-.pagination .page-item.active a:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
+ .apple_pagination {
+    background: #f1f1f1;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 1em;
+    cursor: default; }
+  .apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; }
+  .apple_pagination .disabled {
+    color: #aaaaaa; }
+  .apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .apple_pagination a {
+    text-decoration: none;
+    color: black; }
+  .apple_pagination a:hover, .apple_pagination a:focus {
+    text-decoration: underline; }
+  
