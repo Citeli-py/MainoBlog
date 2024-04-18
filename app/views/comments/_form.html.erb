@@ -1,0 +1,14 @@
+<%= form_with model: [post, post.comments.build] do |form| %>
+    <div class="input-group mt-5">
+        <%= form.text_area :body, class: "form-control", placeholder: "Escreva um commentário", rows: "1" %>
+        
+        <%if user_signed_in?%>
+            <%= form.hidden_field :author, value: current_user.name%>
+        <% end %>
+        
+        <div class="input-group-append">
+            <%= form.submit "Enviar", class: "btn btn-outline-secondary"%>
+        </div>
+
+    </div>
+<%end%>

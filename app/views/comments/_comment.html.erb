@@ -1,0 +1,22 @@
+
+<% if post.comments.size > 0%>
+    <div class="comment-container mt-5">
+        <p><b>Comentários:</b></p>
+        <% post.comments.each do |comment|%>
+
+            <div class="card">
+                <div class="card-body">
+
+                    <% if comment.author.nil?%>
+                        <p class="card-text" style="font-size:16px"><b>Anônimo:</b> <%=comment.body%></p>
+                    <%else%>
+                        <p class="card-text" style="font-size:16px"><b><%=comment.author%></b>: <%=comment.body%></p>
+                    <%end%>
+
+                </div>
+            </div>
+        <%end%>
+    </div>
+
+<% end %>
+

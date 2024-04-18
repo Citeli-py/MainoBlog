@@ -2,5 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "posts#index"
-  resources :posts#, only: [:new, :show, :create]
+  resources :posts do
+    resources :comments
+  end
 end
