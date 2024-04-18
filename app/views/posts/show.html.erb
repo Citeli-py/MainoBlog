@@ -9,15 +9,16 @@
                 <cite title="Source Title"><%=@post.author%></cite>
 
                 <% if user_signed_in? and current_user.name==@post.author%>
-                    <%= button_to "Editar", edit_post_path(@post), 
-                        method: :get,
-                        class: "btn btn-warning float-right"
+                    <%= link_to "Excluir", post, 
+                        class: "btn btn-danger float-right",
+                        data: { 
+                            turbo_method: :delete, 
+                            turbo_confirm: "Tem certeza que deseja deletar esse Post?" 
+                        } 
                     %>
 
-                    <%= button_to "Excluir", @post, 
-                        method: :delete, 
-                        class: "btn btn-danger float-right",
-                        form: { data: { turbo_confirm: "Tem certeza que deseja deletar esse Post?" } }
+                    <%= link_to "Editar", edit_post_path(post), 
+                        class: "btn btn-warning float-right"
                     %>
                 <%end%>
             </footer>
