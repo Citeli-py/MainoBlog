@@ -14,11 +14,14 @@
                     <p><%=post.body%></p>
                     <footer class="blockquote-footer">
                         <cite title="Source Title"><%=post.author%></cite>
-                        <%= button_to "Excluir", post, 
-                            method: :delete, 
-                            class: "btn btn-danger float-right",
-                            data: { confirm: "Tem certeza que deseja excluir?" }
-                        %>
+
+                        <% if user_signed_in? and current_user.name==post.author%>
+                            <%= button_to "Excluir", post, 
+                                method: :delete, 
+                                class: "btn btn-danger float-right",
+                                form: { data: { turbo_confirm: "Tem certeza que deseja deletar esse Post?" } }
+                            %>
+                        <%end%>
                     </footer>
                 </blockquote>
             </div>
