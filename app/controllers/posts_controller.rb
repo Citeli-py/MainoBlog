@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   def show
