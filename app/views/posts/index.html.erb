@@ -2,31 +2,36 @@
 <%= render 'navbar' %>
 
 <div class="mx-auto" style="margin-top: 50px;">
-
     <% @posts.each do |post| %>
 
-        <div class="card mb-4 mx-auto" style="width: 40%;">
-            <div class="card-header">
-                <h2><%=post.title%></h2>
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p><%=post.body%></p>
-                    <footer class="blockquote-footer">
-                        <cite title="Source Title"><%=post.author%></cite>
+        <%=link_to post, style: "text-decoration: none; color: inherit;" do %>
+            <div class="card mb-4 mx-auto" style="width: 40%;">
+                <div class="card-header">
+                    <h2><%=post.title%></h2>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p><%=post.body%></p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title"><%=post.author%></cite>
 
-                        <% if user_signed_in? and current_user.name==post.author%>
-                            <%= button_to "Excluir", post, 
-                                method: :delete, 
-                                class: "btn btn-danger float-right",
-                                form: { data: { turbo_confirm: "Tem certeza que deseja deletar esse Post?" } }
-                            %>
-                        <%end%>
-                    </footer>
-                </blockquote>
+                            <% if user_signed_in? and current_user.name==post.author%>
+                                <%= button_to "Editar", edit_post_path(post), 
+                                    method: :get,
+                                    class: "btn btn-warning float-right"
+                                %>
+
+                                <%= button_to "Excluir", post, 
+                                    method: :delete, 
+                                    class: "btn btn-danger float-right",
+                                    form: { data: { turbo_confirm: "Tem certeza que deseja deletar esse Post?" } }
+                                %>
+                            <%end%>
+                        </footer>
+                    </blockquote>
+                </div>
             </div>
-        </div>
+        <%end%>
 
     <% end %>
-
 </div>

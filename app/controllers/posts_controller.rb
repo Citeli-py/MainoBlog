@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   # Procurar um jeito melhor de authenticar e bloquear áreas
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
@@ -33,23 +32,22 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       flash[:success] = 'Object was successfully deleted.'
-      redirect_to posts_url
     else
       flash[:error] = 'Something went wrong'
-      redirect_to posts_url
     end
+
+    redirect_to posts_url
   end
 
   def edit
     @post = Post.find(params[:id])
   end
 
-
   def update
     @post = Post.find(params[:id])
-      if @post.update_attributes(params[:post])
+      if @post.update(post_params)
         flash[:success] = "Object was successfully updated"
-        redirect_to @post
+        redirect_to posts_url
       else
         flash[:error] = "Something went wrong"
         render 'edit'
