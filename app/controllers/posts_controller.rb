@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_user!, except: [:index]
+
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
   end
 
   def new
@@ -11,7 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       flash[:success] = "Object successfully created"
-      redirect_to @post
+      redirect_to posts_url
     else
       flash[:error] = "Something went wrong"
       render 'new'

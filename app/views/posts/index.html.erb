@@ -14,6 +14,11 @@
                     <p><%=post.body%></p>
                     <footer class="blockquote-footer">
                         <cite title="Source Title"><%=post.author%></cite>
+                        <%= button_to "Excluir", post, 
+                            method: :delete, 
+                            class: "btn btn-danger float-right",
+                            data: { confirm: "Tem certeza que deseja excluir?" }
+                        %>
                     </footer>
                 </blockquote>
             </div>
