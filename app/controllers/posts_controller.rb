@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
 
   # Procurar um jeito melhor de authenticar e bloquear áreas
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:new, :edit, :update, :destroy]
 
   def index
     @posts = Post.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
@@ -23,7 +22,7 @@ class PostsController < ApplicationController
       flash[:success] = "Object successfully created"
       redirect_to posts_url
     else
-      flash[:error] = "Something went wrong"
+      flash[:alert] = "Something went wrong"
       render 'new'
     end
   end
@@ -33,7 +32,7 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:success] = 'Object was successfully deleted.'
     else
-      flash[:error] = 'Something went wrong'
+      flash[:alert] = 'Something went wrong'
     end
 
     redirect_to posts_url
@@ -61,13 +60,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :author)
   end
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
   def authorize_user
     # Verifique se o usuário atual é o autor do post
-    unless current_user.name == @post.author
+    unless user_signed_in? and current_user.name == @post.author
       redirect_to root_path, alert: 'Você não tem permissão para acessar esta página.'
     end
   end
