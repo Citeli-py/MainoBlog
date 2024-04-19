@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    redirect_to root_path
   end
 
   def destroy
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       flash[:error] = 'Something went wrong'
     end
 
-    redirect_to @post
+    redirect_to root_path
   end
 
 

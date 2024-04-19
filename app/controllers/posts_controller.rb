@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
   # Procurar um jeito melhor de authenticar e bloquear áreas
-  before_action :authorize_user, only: [:new, :edit, :update, :destroy]
+  before_action :authorize_user_modify, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:new]
 
   def index
     @posts = Post.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
@@ -61,6 +62,12 @@ class PostsController < ApplicationController
   end
 
   def authorize_user
+    unless user_signed_in?
+      redirect_to root_path, alert: 'Você não tem permissão para acessar esta página.'
+    end
+  end
+
+  def authorize_user_modify
     # Verifique se o usuário atual é o autor do post
     unless user_signed_in? and current_user.name == @post.author
       redirect_to root_path, alert: 'Você não tem permissão para acessar esta página.'
