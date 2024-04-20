@@ -13,7 +13,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-
   def new
     @post= Post.new
   end
@@ -55,11 +54,10 @@ class PostsController < ApplicationController
       end
   end
 
-
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :author)
+    params.require(:post).permit(:title, :body, :user_id)
   end
 
   def set_post
@@ -74,7 +72,7 @@ class PostsController < ApplicationController
 
   def authorize_user_modify
     # Verifique se o usuário atual é o autor do post
-    unless user_signed_in? and current_user.name == @post.author
+    unless user_signed_in? and current_user.id == @post.user_id
       redirect_to root_path, alert: 'Você não tem permissão para acessar esta página.'
     end
   end

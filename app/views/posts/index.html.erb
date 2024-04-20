@@ -12,9 +12,9 @@
                     <blockquote class="blockquote mb-0">
                         <p><%=post.body%></p>
                         <footer class="blockquote-footer">
-                            <cite title="Source Title"><%=post.author%></cite>
+                            <cite title="Source Title"><%=post.getAuthor%></cite>
 
-                            <% if user_signed_in? and current_user.name==post.author%>
+                            <% if user_signed_in? and post.author?(current_user) %>
                                 <%= link_to "Excluir", post, 
                                     class: "btn btn-danger float-right",
                                     data: { 

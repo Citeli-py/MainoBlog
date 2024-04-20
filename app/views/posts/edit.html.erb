@@ -15,7 +15,7 @@
             <%= form.text_area :body, class: "form-control", rows: "3", value: @post.body%>
         </div>
 
-        <%= form.hidden_field :author, value: current_user.name %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
 
         <%= form.submit "Atualizar Post", class: "btn btn-primary" %>
         <%= link_to 'Back', posts_path %>

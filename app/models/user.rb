@@ -7,5 +7,6 @@ class User < ApplicationRecord
 
   # Incluir nome no nosso usuário
   validates :name, presence: true , uniqueness: true
+  has_many :posts
 
 end
