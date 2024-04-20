@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   # Procurar um jeito melhor de authenticar e bloquear áreas
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :authorize_user_modify, only: [:edit, :update, :destroy]
   before_action :authorize_user, only: [:new]
 
@@ -59,6 +60,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :author)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def authorize_user

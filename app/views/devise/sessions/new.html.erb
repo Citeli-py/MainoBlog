@@ -1,11 +1,11 @@
 
 
-<div class="text-center w-50 mx-auto p-4">
+<div class="text-center w-25 mx-auto p-4">
   <h2 class="h3 mb-3 font-weight-normal">Log in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f| %>
 
-    <%= f.text_field :name, autofocus: true, autocomplete: "nome", class: "form-control", placeholder: "Nome"%>
-    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Senha" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "nome", class: "form-control-lg", placeholder: "Nome"%>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control-lg", placeholder: "Senha" %>
 
 
     <% if devise_mapping.rememberable? %>
