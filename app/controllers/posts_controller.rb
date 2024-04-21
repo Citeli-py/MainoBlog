@@ -30,6 +30,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+
+    @comments = @post.comments
+    @comments.destroy_all
+
     if @post.destroy
       flash[:success] = 'Object was successfully deleted.'
     else

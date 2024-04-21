@@ -1,7 +1,38 @@
 
 <div class="mx-auto" style="margin-top: 50px;">
-    <% @posts.each do |post| %>
 
+<% if @posts.size < 1 %>
+
+    <div class="card mb-4 mx-auto" style="width: 70%;">
+        <div class="card-header">
+            <h2>Nenhum post foi feito ainda</h2>
+        </div>
+
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <% if user_signed_in? %>
+                    <p>Faça um post na aba Novo post ou no botão abaixo se estiver logado</p>
+                <% else %>
+                    <p>Crie uma conta e faça o primeiro post</p>
+                <% end %>
+                
+                <footer class="blockquote-footer">
+                    <cite title="Source Title">Mainô Dev</cite>
+                    <% if user_signed_in?%>
+                        <%= link_to "Novo Post", new_post_path, 
+                            class: "btn btn-success float-right"
+                        %>
+                    <%end%>
+                </footer>
+
+            </blockquote>
+        </div>
+    </div>
+
+    
+<% else %>
+
+    <% @posts.each do |post| %>
             <div class="card mb-4 mx-auto" style="width: 70%;">
                 <%=link_to post, style: "text-decoration: none; color: inherit;" do %>
                     <div class="card-header">
@@ -37,6 +68,10 @@
             </div>
 
     <% end %>
+
+<% end %>
+
+
 </div>
 
 
