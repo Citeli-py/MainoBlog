@@ -8,7 +8,7 @@
             <footer class="blockquote-footer">
                 <cite title="Source Title"><%=@post.getAuthor%></cite>
 
-                <% if user_signed_in? and post.author?(current_user)%>
+                <% if user_signed_in? and @post.author?(current_user)%>
                     <%= link_to "Excluir", @post, 
                         class: "btn btn-danger float-right",
                         data: { 

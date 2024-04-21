@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
+    authorize_user_modify
+
     @comment = @post.comments.find(params[:id])
 
     if @comment.destroy
@@ -25,4 +27,10 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:user_id, :body)
     end
 
+    def authorize_user_modify
+      # O dono do post pode deletar comentários anonimos
+      unless user_signed_in? and current_user.id == @post.user_id
+        redirect_to root_path, alert: 'Você não tem permissão para acessar esta página.'
+      end
+    end
 end
