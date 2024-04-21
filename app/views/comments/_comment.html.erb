@@ -7,13 +7,13 @@
             <div class="card mb-1">
                 <div class="card-body p-2">
 
-                    <% if comment.author.nil?%>
+                    <% if comment.getAuthor.nil?%>
                         <p class="card-text" style="font-size:16px"><b>Anônimo:</b> <%=comment.body%></p>
                     <%else%>
-                        <p class="card-text" style="font-size:16px"><b><%=comment.author%></b>: <%=comment.body%></p>
+                        <p class="card-text" style="font-size:16px"><b><%=comment.getAuthor%></b>: <%=comment.body%></p>
                     <%end%>
 
-                    <% if user_signed_in? and current_user.name==comment.author%>
+                    <% if user_signed_in? and comment.author?(current_user)%>
                         <%= link_to "Excluir", post_comment_path(comment.post, comment), 
                             class: "btn btn-danger float-right p-1",
                             data: { 
