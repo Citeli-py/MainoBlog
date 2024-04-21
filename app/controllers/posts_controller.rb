@@ -7,7 +7,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+
+    if !params[:tag_id].nil?
+      @posts = @posts.joins(:post_tags).where(post_tags: { tag_id: params[:tag_id] })
+    end
   end
+
 
   def show
     @post = Post.find(params[:id])
@@ -30,9 +35,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-
-    @comments = @post.comments
-    @comments.destroy_all
 
     if @post.destroy
       flash[:success] = 'Object was successfully deleted.'
