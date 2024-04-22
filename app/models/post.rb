@@ -29,7 +29,7 @@ class Post < ApplicationRecord
     tags.each do |tag_name|
       tag = Tag.find_or_create_by(name: tag_name)
       # Associe a tag ao post
-      PostTag.create(post_id: id, tag_id: tag.id)
+      PostTag.find_or_create_by(post_id: id, tag_id: tag.id)
     end
   end
 
