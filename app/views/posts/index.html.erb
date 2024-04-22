@@ -3,11 +3,6 @@
 
 <div class="mx-auto" style="margin-top: 50px;">
 
-<%= form_tag posts_path, method: :get, class: "form-group mx-auto", style: "width: 70%"  do %>
-  <%= select_tag :tag_id, options_for_select(Tag.pluck(:name, :id), params[:tag_id]), multiple: true, class: "form-control", prompt: "Selecione as tags..." %>
-    <%= submit_tag "Filtrar", class: "btn btn-primary" %>
-<% end %>
-
 <% if @posts.size < 1 %>
 
     <div class="card mb-4 mx-auto" style="width: 70%;">
@@ -38,6 +33,11 @@
 
     
 <% else %>
+
+    <%= form_tag posts_path, method: :get, class: "form-group mx-auto", style: "width: 70%"  do %>
+        <%= select_tag :tag_id, options_for_select(Tag.pluck(:name, :id), params[:tag_id]), multiple: true, class: "form-control", prompt: "Selecione as tags..." %>
+        <%= submit_tag "Filtrar", class: "btn btn-primary" %>
+    <% end %>
 
     <% @posts.each do |post| %>
             <div class="card mb-4 mx-auto" style="width: 70%;">
