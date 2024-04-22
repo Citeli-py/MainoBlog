@@ -4,7 +4,7 @@ Este repositório contém uma aplicação Rails desenvolvida como parte de um de
 
 ## Descrição
 
-A aplicação neste repositório é um fórum online, onde os usuários podem criar posts e fazer comentários em diferentes tópicos. Ela permite aos usuários compartilhar informações, discutir tópicos de interesse e interagir com outros membros da comunidade.
+A aplicação neste repositório é um blog online, onde os usuários podem criar posts e fazer comentários em diferentes tópicos. Ela permite aos usuários compartilhar informações, discutir tópicos de interesse e interagir com outros membros da comunidade.
 
 ## Funcionalidades Principais
 
